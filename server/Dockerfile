@@ -9,13 +9,13 @@ RUN npm install ws
 COPY server/ ./server/
 
 ENV NODE_ENV=production
-ENV WS_PORT=8080
+ENV WS_PORT=6322
 
-EXPOSE 8080
+EXPOSE 6322
 
 USER node
 
 HEALTHCHECK --interval=10s --timeout=5s --start-period=5s --retries=3 \
-  CMD wget -qO- http://127.0.0.1:8080/health || exit 1
+  CMD wget -qO- http://127.0.0.1:6322/health || exit 1
 
 CMD ["node", "server/ws-server.mjs"]

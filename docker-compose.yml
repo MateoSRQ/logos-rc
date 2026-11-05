@@ -6,7 +6,7 @@ services:
     container_name: logos-rc-web
     restart: unless-stopped
     ports:
-      - "${PORT:-3000}:80"
+      - "6321:80"
     depends_on:
       ws:
         condition: service_healthy
@@ -19,9 +19,11 @@ services:
       dockerfile: server/Dockerfile
     container_name: logos-rc-ws
     restart: unless-stopped
+    ports:
+      - "6322:6322"
     environment:
       - NODE_ENV=production
-      - WS_PORT=8080
+      - WS_PORT=6322
     networks:
       - logos-net
 
